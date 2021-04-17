@@ -72,7 +72,8 @@ class WeightsPage extends StatelessWidget {
         padding: EdgeInsets.only(
           top: 16,
           bottom: 16,
-          right: 20,
+          right: 16,
+          left: 16,
         ),
         child: chart,
       ),
