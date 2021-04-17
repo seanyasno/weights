@@ -11,6 +11,7 @@ void main() {
       providers: [
         ChangeNotifierProvider.value(value: WeightsDataProvider()),
       ],
+      child: MyApp(),
     ),
   );
 }
