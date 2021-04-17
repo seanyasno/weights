@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Weights',
       theme: AppThemeFactory.getThemeData(context, ThemeType.DARK),
-      home: HomePage(),
+      home: WeightsPage(),
       debugShowCheckedModeBanner: false,
     );
   }
