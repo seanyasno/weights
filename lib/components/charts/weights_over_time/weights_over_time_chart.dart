@@ -1,6 +1,6 @@
+import 'package:weights/abstraction/interfaces/interfaces.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:weights/abstraction/interfaces/interfaces.dart';
 
 class WeightsOverTimeChart extends StatelessWidget {
   final List<Color> gradientColors = [

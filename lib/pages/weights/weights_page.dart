@@ -1,7 +1,7 @@
 import 'package:weights/abstraction/interfaces/interfaces.dart';
 import 'package:weights/components/charts/charts.dart';
-import 'package:weights/models/models.dart';
 import 'package:weights/providers/providers.dart';
+import 'package:weights/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
