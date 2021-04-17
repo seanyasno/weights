@@ -1,11 +1,16 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:weights/abstraction/interfaces/interfaces.dart';
 
 class WeightsOverTimeChart extends StatelessWidget {
   final List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
+
+  final List<IWeightData> weightsData;
+
+  WeightsOverTimeChart({@required this.weightsData});
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +81,7 @@ class WeightsOverTimeChart extends StatelessWidget {
       maxY: 90,
       lineBarsData: [
         LineChartBarData(
-          spots: [
-            FlSpot(0, 81.8),
-            FlSpot(1, 81.6),
-            FlSpot(2, 81.3),
-            FlSpot(3, 80.9),
-            FlSpot(4, 80.5),
-            FlSpot(5, 80.2),
-          ],
+          spots: weightsData.asMap().entries.map((entry) => FlSpot(entry.key.toDouble(), entry.value.weight)).toList(),
           isCurved: true,
           colors: gradientColors,
           barWidth: 5,
