@@ -1,19 +1,19 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weights/abstraction/interfaces/interfaces.dart';
+import 'package:weights/providers/providers.dart';
 
-class WeightsPage extends StatefulWidget {
-  @override
-  _WeightsPageState createState() => _WeightsPageState();
-}
-
-class _WeightsPageState extends State<WeightsPage> {
-  List<Color> gradientColors = [
+class WeightsPage extends StatelessWidget {
+  final List<Color> gradientColors = [
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
 
   @override
   Widget build(BuildContext context) {
+    final List<IWeightData> weightsData = Provider.of<WeightsDataProvider>(context).weightsData;
+
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
@@ -31,12 +31,12 @@ class _WeightsPageState extends State<WeightsPage> {
   LineChartData mainData() {
     return LineChartData(
       gridData: FlGridData(
-        show: true,
+        show: false,
         drawVerticalLine: true,
         getDrawingHorizontalLine: (value) {
           return FlLine(
             color: const Color(0xff37434d),
-            strokeWidth: 1,
+            strokeWidth: 0,
           );
         },
         getDrawingVerticalLine: (value) {
@@ -55,11 +55,11 @@ class _WeightsPageState extends State<WeightsPage> {
           const TextStyle(color: Color(0xff68737d), fontWeight: FontWeight.bold, fontSize: 16),
           getTitles: (value) {
             switch (value.toInt()) {
-              case 2:
+              case 1:
                 return 'MAR';
-              case 5:
+              case 3:
                 return 'JUN';
-              case 8:
+              case 5:
                 return 'SEP';
             }
             return '';
@@ -74,7 +74,6 @@ class _WeightsPageState extends State<WeightsPage> {
             fontSize: 15,
           ),
           getTitles: (value) {
-            print(value);
             if (value.toInt() % 10 == 0) {
               return value.toInt().toString();
             }

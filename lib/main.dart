@@ -1,10 +1,18 @@
 import 'package:weights/abstraction/abstractions.dart';
+import 'package:weights/providers/providers.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'models/models.dart';
 import 'pages/pages.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: WeightsDataProvider()),
+      ],
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
