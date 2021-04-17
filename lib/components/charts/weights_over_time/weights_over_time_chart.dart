@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 class WeightsOverTimeChart extends StatelessWidget {
   final List<Color> gradientColors = [
+    // const Color(0xffaf2d2d),
+    // const Color(0xffce6262),
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
@@ -14,10 +16,26 @@ class WeightsOverTimeChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LineChart(mainData());
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          'Weights Over Time',
+          style: TextStyle(
+            fontSize: 22,
+            color: Theme.of(context).primaryColor
+          ),
+        ),
+        SizedBox(height: 15),
+        AspectRatio(
+          aspectRatio: 2,
+          child: LineChart(mainData(context)),
+        ),
+      ],
+    );
   }
 
-  LineChartData mainData() {
+  LineChartData mainData(BuildContext context) {
     return LineChartData(
       gridData: FlGridData(
         show: false,
@@ -40,8 +58,10 @@ class WeightsOverTimeChart extends StatelessWidget {
         bottomTitles: SideTitles(
           showTitles: true,
           reservedSize: 22,
-          getTextStyles: (value) =>
-          const TextStyle(color: Color(0xff68737d), fontWeight: FontWeight.bold, fontSize: 16),
+          getTextStyles: (value) => TextStyle(
+            color: Theme.of(context).textTheme.bodyText1.color,
+            fontSize: 16,
+          ),
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:
@@ -57,9 +77,8 @@ class WeightsOverTimeChart extends StatelessWidget {
         ),
         leftTitles: SideTitles(
           showTitles: true,
-          getTextStyles: (value) => const TextStyle(
-            color: Color(0xff67727d),
-            fontWeight: FontWeight.bold,
+          getTextStyles: (value) => TextStyle(
+            color: Theme.of(context).textTheme.bodyText1.color,
             fontSize: 15,
           ),
           getTitles: (value) {
@@ -73,15 +92,20 @@ class WeightsOverTimeChart extends StatelessWidget {
           margin: 12,
         ),
       ),
-      borderData:
-      FlBorderData(show: true, border: Border.all(color: const Color(0xff37434d), width: 1)),
+      borderData: FlBorderData(
+          show: true,
+          border: Border.all(color: const Color(0xff37434d), width: 1)),
       minX: 0,
       maxX: 5,
       minY: 70,
       maxY: 90,
       lineBarsData: [
         LineChartBarData(
-          spots: weightsData.asMap().entries.map((entry) => FlSpot(entry.key.toDouble(), entry.value.weight)).toList(),
+          spots: weightsData
+              .asMap()
+              .entries
+              .map((entry) => FlSpot(entry.key.toDouble(), entry.value.weight))
+              .toList(),
           isCurved: true,
           colors: gradientColors,
           barWidth: 5,
@@ -91,7 +115,8 @@ class WeightsOverTimeChart extends StatelessWidget {
           ),
           belowBarData: BarAreaData(
             show: true,
-            colors: gradientColors.map((color) => color.withOpacity(0.3)).toList(),
+            colors:
+                gradientColors.map((color) => color.withOpacity(0.3)).toList(),
           ),
         ),
       ],

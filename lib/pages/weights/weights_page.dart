@@ -30,27 +30,37 @@ class WeightsPage extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: 20,
+          horizontal: 10,
         ),
         child: Center(
-          child: Row(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
                 flex: 1,
-                child: AspectRatio(
-                  aspectRatio: 1.7,
-                  child: WeightsOverTimeChart(
-                    weightsData: weightsData,
-                  ),
-                ),
+                child: enhanceChart(context, WeightsOverTimeChart(weightsData: weightsData)),
               ),
             ],
           ),
-          // child: AspectRatio(
-          //   aspectRatio: 1.7,
-          //   child: WeightsOverTimeChart(),
-          // ),
         ),
+      ),
+    );
+  }
+
+  Widget enhanceChart(BuildContext context, Widget chart) {
+    return Card(
+      color: Theme.of(context).backgroundColor,
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: 16,
+          bottom: 16,
+          right: 20,
+        ),
+        child: chart,
       ),
     );
   }

@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 class AppThemeFactory {
   static ThemeData getThemeData(BuildContext context, ThemeType themeType) {
     final darkTextTheme = Theme.of(context).textTheme.apply(
-      bodyColor: Colors.white
+      bodyColor: Color(0xffe8e8e8),
     );
 
     switch (themeType) {
       case ThemeType.DARK:
         return ThemeData(
-          primaryColor: Color(0xfff05454),
+          primaryColor: Color(0xff02d39a),
           visualDensity: VisualDensity.adaptivePlatformDensity,
           dividerColor: Colors.transparent,
           textTheme: GoogleFonts.ralewayTextTheme(darkTextTheme),
-          backgroundColor: Color(0xff214252),
+          backgroundColor: Color(0xff222831),
           indicatorColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.white),
           textSelectionTheme: TextSelectionThemeData(
