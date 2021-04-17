@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 class WeightsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     final List<IWeightData> weightsData =
         Provider.of<WeightsDataProvider>(context).weightsData;
 
@@ -27,7 +28,19 @@ class WeightsPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: theme.backgroundColor,
+      appBar: AppBar(
+        title: Text(
+          'Weights Statistics',
+          style: TextStyle(
+            color: theme.primaryColor,
+            fontWeight: FontWeight.w300
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: theme.backgroundColor,
+      ),
       body: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 10,
@@ -38,7 +51,8 @@ class WeightsPage extends StatelessWidget {
             children: [
               Flexible(
                 flex: 1,
-                child: enhanceChart(context, WeightsOverTimeChart(weightsData: weightsData)),
+                child: enhanceChart(
+                    context, WeightsOverTimeChart(weightsData: weightsData)),
               ),
             ],
           ),
